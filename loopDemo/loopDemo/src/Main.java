@@ -23,5 +23,16 @@ public class Main {
             i++; //döngünün iterasyon koşulu
         }
         System.out.println("While döngüsü bitti.");
+
+        //Do-While döngüsü
+
+        int j = 11
+                ;
+        do {        //do{} içindekileri while koşulu tamamlanana kadar uygula. Program satır satır ilerlediği için koşul uymasa bile ilk iterasyon her zaman çalışacak.
+            System.out.println(j);
+            j++; //döngünün iterasyon koşulu
+            } while (j <10); //bitiş koşulu
+        System.out.println("Do-While döngüsü bitti.");
+
     }
 }

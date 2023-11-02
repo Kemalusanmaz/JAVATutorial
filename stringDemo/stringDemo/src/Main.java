@@ -16,5 +16,18 @@ public class Main {
 
     System.out.println(mesaj.indexOf("a"));//karakterin mesaj içinde kaçıncı indexte olduğu bilgisini verir. İlk bulduğunu verir ve operasyonu bitir.
     System.out.println(mesaj.lastIndexOf("a")); //aramaya sağ taraftan başlar.
+
+    System.out.println(mesaj.replace(" ","_")); //char değiştirir. dedisken.replace("değişecek char, neyle değişecek). Yeni değişkene atanmalı.
+
+    System.out.println(mesaj.substring(2,4)); // başlangıç indexinden başa son indexe kadar substringe alır. lastIndexi almaz.
+    for (String kelime:mesaj.split(" ")){ //stringi metot içinde verilen argümana göre ayırır ve dizi haline getirir.
+        System.out.println(kelime);
+    }
+
+    System.out.println(mesaj.toLowerCase()); //stringi küçük harfe çevirir.
+    System.out.println(mesaj.toUpperCase()); //stringi büyük harfe çevirir.
+
+    System.out.println(mesaj.trim()); //stringin başındaki ve sonundaki boşlukları siler.
+
     }
 }

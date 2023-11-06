@@ -14,6 +14,9 @@ public class Main {
 
         int sayiTopla = ikiSayiTopla(5,10);
         System.out.println(sayiTopla);
+
+        int toplam = topla2(2,3,4,5,6,7,53); //
+        System.out.println(toplam);
     }
 
     //fonksiynlar kendimizi tekrar etmemek için kullanılır.
@@ -40,6 +43,14 @@ public class Main {
     public static int ikiSayiTopla(int sayi1, int sayi2){
         int toplam = sayi1 + sayi2;
         return toplam;
+    }
 
+    public static int topla2(int... sayilar){ //int... ile fonksiyona limitsiz argüman gönderilebilir. yani bir integer array gibi çalışır.
+        int toplam = 0;
+        for (int sayi:sayilar){ //sayilar dizisindeki her bir sayi döner
+            toplam = toplam + sayi; //listedeki her sayi sırayla toplanır.
+
+        }
+        return toplam; //toplam değeri return edilir.
     }
 }

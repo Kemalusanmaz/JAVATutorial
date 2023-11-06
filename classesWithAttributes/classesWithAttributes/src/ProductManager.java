@@ -1,7 +1,7 @@
 public class ProductManager {
     public void add(Product product){ //burada Product classında tanımlanmış attributeler bu fonksiyona argüman olarak gelir.
         //JDBC
-        System.out.println("Ürün eklendi." + product.name);
+        System.out.println("Ürün eklendi." + product.getName());
     }
 
     public void add2(int id, String name, String description, int stockAmount, double price){

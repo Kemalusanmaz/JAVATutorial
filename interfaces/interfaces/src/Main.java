@@ -9,8 +9,17 @@ public class Main {
 
         //Implementasyon => bir class birrden fazla classı implement edebilir.
 
+        //polimorphgism interfaceile uygulama yöntemleri
 
-        ICustomerDal iCustomerDal = new OracleCustomerDal(); //Interface, onu implemente eden classın referansını tutabilir. Polimorphisim.
+        //ICustomerDal iCustomerDal = new OracleCustomerDal(); //Interface, onu implemente eden classın referansını tutabilir. Polimorphisim.
+        //-----1. Yöntem ------
+        /*CustomerManager customerManager = new CustomerManager();
+       // customerManager.customerDal = new OracleCustomerDal(); // customerDal artık Oracle seçilir.
+        customerManager.customerDal = new NoSQLCustomerDal();
+        customerManager.add(); // fonksiyon şimdi kullanılabilir.*/
 
+        //------ 2. Yöntem ------
+        CustomerManager customerManager = new CustomerManager(new OracleCustomerDal());
+        customerManager.add();
     }
 }

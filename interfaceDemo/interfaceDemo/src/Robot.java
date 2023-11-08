@@ -6,6 +6,6 @@ public class Robot implements IWorkable,IMaintable{
 
     @Override
     public void maintenance() {
-        
+
     }
 }

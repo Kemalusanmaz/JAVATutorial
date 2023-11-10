@@ -10,7 +10,7 @@ public class Main {
         Customer engin = new Customer(1,"Engin","Demiroğ");
         customers.add(engin);
 
-        customers.add(new Customer(2,"Derin","Demiroğ")); 
+        customers.add(new Customer(2,"Derin","Demiroğ"));
         customers.add(new Customer(3,"Salih","Demiroğ"));
 
 

@@ -6,19 +6,16 @@ public class AccountManager {
         balance = getBalance() + amount;
     }
 
-    public void withdraw(double amount) throws Exception {
+    public void withdraw(double amount) throws BalanceInsufficientException {
         //1.yöntem
         if (balance >= amount){
             balance = getBalance() - amount;
 
         }else {
-            throw new Exception("Bakiye yetersiz.");
+            throw new BalanceInsufficientException("Bakiye yetersiz."); //custom exception oluşturmak
         }
 
-
-
     }
-
 
     public double getBalance() { //hesaptaki paranın okunması için balance enkapsüle edili.r
         return balance;

@@ -10,7 +10,7 @@ public class Main {
 
         try {
             manager.withdraw(90);
-        } catch (Exception e) {
+        } catch (BalanceInsufficientException e) {
             System.out.println(e.getMessage());
         }
 
@@ -18,7 +18,7 @@ public class Main {
 
         try {
             manager.withdraw(20);
-        } catch (Exception e) {
+        } catch (BalanceInsufficientException e) {
             System.out.println(e.getMessage());
         }
 

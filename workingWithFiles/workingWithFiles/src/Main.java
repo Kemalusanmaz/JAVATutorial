@@ -1,12 +1,13 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner; //dosyanın okunması için gereken paket
 
 public class Main {
     public static void main(String[] args) {
         //createFile();
         //getFileInfo();
+
+        readFile();
+        writeFile();
         readFile();
 
     }
@@ -54,6 +55,21 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void writeFile(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\KEMAL_PROJECTS\\JAVA_ile_Programlamaya_Giris\\javaDemos\\Files\\students.txt",true));
+            //append argümanı true verilirse üzerine yazmaz son satırın hemen yanına yazar.
+            writer.newLine();//alt satıra geçmek için newline fonksiyonu kullanılır
+            writer.write("Ahmet"); //default olarak overwrite olarak yazar.
+            System.out.println("Dosyaya yazıldı.");
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //dosyaya yazmak için FileWrite classından referans alınır. BufferedWriter classından referansalınan değişkene argüman olarak verilir.
+
     }
 
     }

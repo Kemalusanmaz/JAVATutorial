@@ -13,7 +13,8 @@ public class Main {
 
         //selectDemo();
         //insertDemo();
-        updateDemo();
+        //updateDemo();
+        deleteDemo();
     }
 
     public static void selectDemo() throws SQLException{
@@ -125,5 +126,40 @@ public class Main {
             System.out.println("Bağlantı sonlandırıldı.");
         }
     }
-}
 
+    public static void deleteDemo() throws SQLException{
+        Connection connection = null;
+        DbHelper dbHelper = new DbHelper();
+        PreparedStatement statement = null; //insert sorgularında ekleme yaparaken prepared statement nesnesi kullanılır
+
+        try {
+
+            connection = dbHelper.getConnection();
+
+            //String sql = "update city set population=80000, district = 'İstanbul'where id = 4091";
+            String sql = "delete from city where id = ?";
+            //insert işlemi ile ekleme yaparken
+            statement = connection.prepareStatement(sql); //? kullaınıcı tarafından parametre beleniyor.
+
+            statement.setInt(1,4082); //1. soru işaretinini değerini 2. değer olarak ayarla
+
+            int result = statement.executeUpdate(); //etkilenen kayıt sayısı döner
+            String state;
+            if (result == 1){
+                state = "Başarılı";
+            }else {
+                state = "Başarısız";
+            }
+
+            System.out.println("Kayıt silinme durumu: " + state);
+
+
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
+        }finally {
+            statement.close();
+            connection.close(); //iş bittiğinde bağlanıyı kapatmayı sağlar
+            System.out.println("Bağlantı sonlandırıldı.");
+        }
+    }
+}

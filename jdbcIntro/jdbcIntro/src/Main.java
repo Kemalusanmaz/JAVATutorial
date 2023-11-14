@@ -11,7 +11,9 @@ public class Main {
         //JDBC tüm sql operasyonlarına erişebilmek için kullanılan kütüphane
         //Kullanıcacak db sistemine bağlantıyı sağlayan nesne driver kullanılır.
 
-        insertDemo();
+        //selectDemo();
+        //insertDemo();
+        updateDemo();
     }
 
     public static void selectDemo() throws SQLException{
@@ -62,7 +64,7 @@ public class Main {
 
             //insert işlemi ile ekleme yaparken
             statement = connection.prepareStatement(sql); //? kullaınıcı tarafından parametre beleniyor.
-            statement.setString(1,"İstanbul");
+            statement.setString(1,"Istanbul");
             statement.setString(2,"TUR");
             statement.setString(3,"Turkey");
             statement.setInt(4,20000);
@@ -72,10 +74,10 @@ public class Main {
             if (result == 1){
                 state = "Başarılı";
             }else {
-                state = "Başarılı";
+                state = "Başarısız";
             }
 
-            System.out.println("Kayıt durumu: " + state);
+            System.out.println("Kayıt güncelleme durumu: " + state);
 
 
         }catch (SQLException exception){
@@ -83,8 +85,45 @@ public class Main {
         }finally {
             statement.close();
             connection.close(); //iş bittiğinde bağlanıyı kapatmayı sağlar
+            System.out.println("Bağlantı sonlandırıldı.");
         }
     }
 
+    public static void updateDemo() throws SQLException{
+        Connection connection = null;
+        DbHelper dbHelper = new DbHelper();
+        PreparedStatement statement = null; //insert sorgularında ekleme yaparaken prepared statement nesnesi kullanılır
+
+        try {
+
+            connection = dbHelper.getConnection();
+
+            //String sql = "update city set population=80000, district = 'İstanbul'where id = 4091";
+            String sql = "update city set population=?, district = ? where id = ?";
+            //insert işlemi ile ekleme yaparken
+            statement = connection.prepareStatement(sql); //? kullaınıcı tarafından parametre beleniyor.
+
+            statement.setInt(1,25000); //1. soru işaretinini değerini 2. değer olarak ayarla
+            statement.setString(2,"Turkey");
+            statement.setInt(3,4089);
+            int result = statement.executeUpdate(); //etkilenen kayıt sayısı döner
+            String state;
+            if (result == 1){
+                state = "Başarılı";
+            }else {
+                state = "Başarısız";
+            }
+
+            System.out.println("Kayıt güncellenme durumu: " + state);
+
+
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
+        }finally {
+            statement.close();
+            connection.close(); //iş bittiğinde bağlanıyı kapatmayı sağlar
+            System.out.println("Bağlantı sonlandırıldı.");
+        }
+    }
 }
 

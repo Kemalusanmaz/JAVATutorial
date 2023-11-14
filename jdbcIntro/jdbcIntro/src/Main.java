@@ -11,7 +11,10 @@ public class Main {
         //JDBC tüm sql operasyonlarına erişebilmek için kullanılan kütüphane
         //Kullanıcacak db sistemine bağlantıyı sağlayan nesne driver kullanılır.
 
-        //DB Driver için Project Explorer menüsünden  mySQL Connector J dosya yolu eklendi.
+        insertDemo();
+    }
+
+    public static void selectDemo() throws SQLException{
         Connection connection = null;
         DbHelper dbHelper = new DbHelper();
 
@@ -43,6 +46,45 @@ public class Main {
         }finally {
             connection.close(); //iş bittiğinde bağlanıyı kapatmayı sağlar
         }
-
     }
+
+    public static void insertDemo() throws SQLException {
+        //DB Driver için Project Explorer menüsünden  mySQL Connector J dosya yolu eklendi.
+        Connection connection = null;
+        DbHelper dbHelper = new DbHelper();
+        PreparedStatement statement = null; //insert sorgularında ekleme yaparaken prepared statement nesnesi kullanılır
+
+        try {
+
+            connection = dbHelper.getConnection();
+
+            String sql = "insert into city (Name,CountryCode,District,Population) values (?,?,?,?)";
+
+            //insert işlemi ile ekleme yaparken
+            statement = connection.prepareStatement(sql); //? kullaınıcı tarafından parametre beleniyor.
+            statement.setString(1,"İstanbul");
+            statement.setString(2,"TUR");
+            statement.setString(3,"Turkey");
+            statement.setInt(4,20000);
+
+            int result = statement.executeUpdate(); //etkilenen kayıt sayısı döner
+            String state;
+            if (result == 1){
+                state = "Başarılı";
+            }else {
+                state = "Başarılı";
+            }
+
+            System.out.println("Kayıt durumu: " + state);
+
+
+        }catch (SQLException exception){
+            dbHelper.showErrorMessage(exception);
+        }finally {
+            statement.close();
+            connection.close(); //iş bittiğinde bağlanıyı kapatmayı sağlar
+        }
+    }
+
 }
+
